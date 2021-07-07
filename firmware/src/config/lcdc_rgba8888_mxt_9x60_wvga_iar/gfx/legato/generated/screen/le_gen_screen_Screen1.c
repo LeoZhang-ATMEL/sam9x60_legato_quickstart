@@ -2,6 +2,7 @@
 
 // screen member widget declarations
 static leWidget* root0;
+static leWidget* root1;
 
 leImageWidget* Screen1_ImageWidget0;
 leButtonWidget* Screen1_ButtonWidget0;
@@ -32,22 +33,33 @@ leResult screenShow_Screen1(void)
     root0->flags |= LE_WIDGET_IGNOREEVENTS;
     root0->flags |= LE_WIDGET_IGNOREPICK;
 
+    leAddRootWidget(root0, 0);
+    leSetLayerColorMode(0, LE_COLOR_MODE_RGBA_8888);
+
+    // layer 1
+    root1 = leWidget_New();
+    root1->fn->setSize(root1, 800, 480);
+    root1->fn->setBackgroundType(root1, LE_WIDGET_BACKGROUND_NONE);
+    root1->fn->setMargins(root1, 0, 0, 0, 0);
+    root1->flags |= LE_WIDGET_IGNOREEVENTS;
+    root1->flags |= LE_WIDGET_IGNOREPICK;
+
     Screen1_ImageWidget0 = leImageWidget_New();
     Screen1_ImageWidget0->fn->setPosition(Screen1_ImageWidget0, 0, 0);
     Screen1_ImageWidget0->fn->setSize(Screen1_ImageWidget0, 800, 480);
     Screen1_ImageWidget0->fn->setBorderType(Screen1_ImageWidget0, LE_WIDGET_BORDER_NONE);
     Screen1_ImageWidget0->fn->setImage(Screen1_ImageWidget0, (leImage*)&Image0);
-    root0->fn->addChild(root0, (leWidget*)Screen1_ImageWidget0);
+    root1->fn->addChild(root1, (leWidget*)Screen1_ImageWidget0);
 
     Screen1_ButtonWidget0 = leButtonWidget_New();
     Screen1_ButtonWidget0->fn->setPosition(Screen1_ButtonWidget0, 110, 267);
     Screen1_ButtonWidget0->fn->setSize(Screen1_ButtonWidget0, 164, 65);
     Screen1_ButtonWidget0->fn->setString(Screen1_ButtonWidget0, (leString*)&string_Smart);
     Screen1_ButtonWidget0->fn->setPressedEventCallback(Screen1_ButtonWidget0, event_Screen1_ButtonWidget0_OnPressed);
-    root0->fn->addChild(root0, (leWidget*)Screen1_ButtonWidget0);
+    Screen1_ImageWidget0->fn->addChild(Screen1_ImageWidget0, (leWidget*)Screen1_ButtonWidget0);
 
-    leAddRootWidget(root0, 0);
-    leSetLayerColorMode(0, LE_COLOR_MODE_RGBA_8888);
+    leAddRootWidget(root1, 1);
+    leSetLayerColorMode(1, LE_COLOR_MODE_RGBA_8888);
 
     showing = LE_TRUE;
 
@@ -64,6 +76,10 @@ void screenHide_Screen1(void)
     leRemoveRootWidget(root0, 0);
     leWidget_Delete(root0);
     root0 = NULL;
+
+    leRemoveRootWidget(root1, 1);
+    leWidget_Delete(root1);
+    root1 = NULL;
 
     Screen1_ImageWidget0 = NULL;
     Screen1_ButtonWidget0 = NULL;
@@ -90,6 +106,10 @@ leWidget* screenGetRoot_Screen1(uint32_t lyrIdx)
         case 0:
         {
             return root0;
+        }
+        case 1:
+        {
+            return root1;
         }
         default:
         {

@@ -145,7 +145,7 @@ extern "C" {
 // renderer configuration
 //#define LE_VSYNC_STALL
 
-#define LE_LAYER_COUNT                     1
+#define LE_LAYER_COUNT                     2
 
 #if LE_LAYER_COUNT <= 0
 #error LE_LAYER_COUNT must be greater than or equal to 1

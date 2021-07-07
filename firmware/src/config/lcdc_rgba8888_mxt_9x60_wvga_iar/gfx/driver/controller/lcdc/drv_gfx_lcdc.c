@@ -77,6 +77,7 @@
 
 #define LCDC_HSYNC_POLARITY LCDC_POLARITY_POSITIVE
 
+#define LCDC_ENABLE_GLOBAL_HW_ALPHA 1
 
 #define LCDC_PWM_CLOCK_SOURCE LCDC_PWM_SOURCE_SYSTEM
 #define LCDC_PWM_PRESCALER 5
@@ -120,7 +121,6 @@ LCDC_DMA_DESC __attribute__ ((section(".region_nocache"), aligned (64))) channel
 LCDC_DMA_DESC __attribute__ ((section(".region_nocache"), aligned (64))) channelDesc2;
 
 static volatile DRV_STATE state[GFX_LCDC_LAYERS];
-static gfxRect srcRect, destRect;
 static unsigned int vsyncCount = 0;
 static unsigned int activeLayer = 0;
 
@@ -428,6 +428,9 @@ gfxResult DRV_LCDC_BlitBuffer(int32_t x,
                              int32_t y,
                              gfxPixelBuffer* buf)
 {
+    void* srcPtr;
+    void* destPtr;
+    uint32_t row, rowSize;
 
     if (state[activeLayer] != DRAW)
 	{
@@ -435,17 +438,15 @@ gfxResult DRV_LCDC_BlitBuffer(int32_t x,
 	}
 
 
-    srcRect.x = 0;
-    srcRect.y = 0;
-    srcRect.height = buf->size.height;
-    srcRect.width = buf->size.width;
+    rowSize = buf->size.width * gfxColorInfoTable[buf->mode].size;
 
-    destRect.x = x;
-    destRect.y = y;
-    destRect.height = buf->size.height;
-    destRect.width = buf->size.width;
-    
-    gfxGPUInterface.blitBuffer(buf, &srcRect, &drvLayer[activeLayer].pixelBuffer[drvLayer[activeLayer].frontBufferIdx], &destRect);
+    for(row = 0; row < buf->size.height; row++)
+    {
+        srcPtr = gfxPixelBufferOffsetGet(buf, 0, row);
+        destPtr = gfxPixelBufferOffsetGet(&drvLayer[activeLayer].pixelBuffer[drvLayer[activeLayer].backBufferIdx], x, y + row);
+
+        memcpy(destPtr, srcPtr, rowSize);
+    }
 
     return GFX_SUCCESS;
 }

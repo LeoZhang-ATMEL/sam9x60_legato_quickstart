@@ -1,0 +1,1 @@
+Copy files to the C:\Program Files\IAR Systems\Embedded Workbench 8.4\arm\config\flashloader\Microchip\sam9x60\

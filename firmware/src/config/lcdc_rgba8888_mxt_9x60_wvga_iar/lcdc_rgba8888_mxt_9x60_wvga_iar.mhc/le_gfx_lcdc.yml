@@ -40,7 +40,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: 'false'}
+        attributes: {value: 'true'}
   - type: Comment
     attributes: {id: HALComment}
     children:
@@ -70,7 +70,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: 'true'}
+        attributes: {value: 'false'}
 - type: Attachments
   children:
   - type: DirectDependency

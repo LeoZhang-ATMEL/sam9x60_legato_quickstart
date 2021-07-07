@@ -106,6 +106,33 @@ extern leImage mchpLogo_light;
  ***********************************/
 extern leImage Image0;
 
+/*********************************
+ * Legato Image Asset
+ * Name:   up
+ * Size:   75x75 pixels
+ * Type:   RGB Data
+ * Format: RGBA_8888
+ ***********************************/
+extern leImage up;
+
+/*********************************
+ * Legato Image Asset
+ * Name:   up2
+ * Size:   75x75 pixels
+ * Type:   RGB Data
+ * Format: RGBA_8888
+ ***********************************/
+extern leImage up2;
+
+/*********************************
+ * Legato Image Asset
+ * Name:   fan_auto
+ * Size:   100x100 pixels
+ * Type:   RGB Data
+ * Format: RGBA_8888
+ ***********************************/
+extern leImage fan_auto;
+
 /*****************************************************************************
  * Legato Graphics Font Assets
  *****************************************************************************/

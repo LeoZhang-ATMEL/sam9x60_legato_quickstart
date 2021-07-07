@@ -28,6 +28,15 @@
 #include "definitions.h"                // SYS function prototypes
 
 
+void event_Screen0_ButtonWidget1_OnPressed(leButtonWidget* btn)
+{
+  Screen0_ImageWidget1->fn->setImage(Screen0_ImageWidget1, (leImage*)&up);
+}
+void event_Screen0_ButtonWidget1_OnReleased(leButtonWidget* btn)
+{
+  Screen0_ImageWidget1->fn->setImage(Screen0_ImageWidget1, (leImage*)&up2);
+}
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Main Entry Point

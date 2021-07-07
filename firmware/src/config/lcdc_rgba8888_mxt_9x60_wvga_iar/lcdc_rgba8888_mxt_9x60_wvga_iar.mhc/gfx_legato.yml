@@ -10,7 +10,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: gfx_legato, value: 'false'}
+        attributes: {id: gfx_legato, value: 'true'}
   - type: String
     attributes: {id: driverInitName}
     children:
@@ -42,5 +42,18 @@ children:
         attributes: {id: targetAttachmentID}
         children:
         - {type: Value, value: le_gfx_driver_lcdc}
+  - type: DirectDependency
+    attributes: {id: gpu_driver}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: le_gfx_gfx2d}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: LE GPU Driver}
 - type: ElementPosition
-  attributes: {x: '30', y: '60', id: gfx_legato}
+  attributes: {x: '543', y: '495', id: gfx_legato}

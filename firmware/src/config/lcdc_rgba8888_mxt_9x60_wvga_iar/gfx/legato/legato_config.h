@@ -59,7 +59,7 @@ extern "C" {
 #define LE_DEFAULT_COLOR_MODE                LE_COLOR_MODE_RGBA_8888
 #define LE_TOUCH_ORIENTATION                 0
 #define LE_RENDER_ORIENTATION                0
-#define LE_DRIVER_LAYER_MODE                 0
+#define LE_DRIVER_LAYER_MODE                 1
 // CUSTOM CODE - DO NOT MODIFY
 #define LE_DYNAMIC_VTABLES                   1
 // END CUSTOM CODE
@@ -102,7 +102,7 @@ extern "C" {
 #define LE_IMAGESCALE_WIDGET_ENABLED       0
 #define LE_IMAGESEQUENCE_WIDGET_ENABLED    0
 #define LE_KEYPAD_WIDGET_ENABLED           0
-#define LE_LABEL_WIDGET_ENABLED            1
+#define LE_LABEL_WIDGET_ENABLED            0
 #define LE_LINE_WIDGET_ENABLED             0
 #define LE_LINEGRAPH_WIDGET_ENABLED        0
 #define LE_LIST_WIDGET_ENABLED             0
@@ -145,7 +145,7 @@ extern "C" {
 // renderer configuration
 //#define LE_VSYNC_STALL
 
-#define LE_LAYER_COUNT                     3
+#define LE_LAYER_COUNT                     1
 
 #if LE_LAYER_COUNT <= 0
 #error LE_LAYER_COUNT must be greater than or equal to 1
